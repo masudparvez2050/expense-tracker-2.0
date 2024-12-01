@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
@@ -10,14 +11,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { DatePickerWithRange } from "@/components/ui/date-range-picker";
+import { DateRange } from "react-day-picker";
 
 interface TransactionFiltersProps {
   searchQuery: string;
   onSearchChange: (value: string) => void;
   categoryFilter: string;
   onCategoryChange: (value: string) => void;
-  dateRange: { from: Date | undefined; to: Date | undefined };
-  onDateRangeChange: (range: { from: Date | undefined; to: Date | undefined }) => void;
+  dateRange: DateRange | undefined;
+  onDateRangeChange: (range: DateRange | undefined) => void;
 }
 
 export function TransactionFilters({
