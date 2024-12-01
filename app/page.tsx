@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import { Transaction } from "@/lib/types";
+import { DateRange } from "react-day-picker";
 
 export default function Home() {
   const [selectedTransaction, setSelectedTransaction] = useState<
@@ -53,6 +54,13 @@ export default function Home() {
       date: "2024-03-24",
     },
   ]);
+
+  const handleDateRangeChange = (range: DateRange | undefined) => {
+    setDateRange({
+      from: range?.from || undefined,
+      to: range?.to || undefined,
+    });
+  };
 
   const handleSubmit = (data: Omit<Transaction, "id">) => {
     if (selectedTransaction) {
@@ -107,7 +115,7 @@ export default function Home() {
             categoryFilter={categoryFilter}
             onCategoryChange={setCategoryFilter}
             dateRange={dateRange}
-            onDateRangeChange={setDateRange}
+            onDateRangeChange={handleDateRangeChange}
           />
 
           <TransactionList
